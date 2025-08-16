@@ -62,10 +62,12 @@ Scenario scenario;
     	WebElement selectDD=driver.findElement(By.id("carselect"));
     	Select sel=new Select(selectDD);
     	sel.selectByValue("honda");
+    	
     	WebElement multiselectDD=driver.findElement(By.id("multiple-select-example"));
     	Select sel1=new Select(multiselectDD);
     	sel1.selectByValue("orange");
     	sel1.selectByValue("peach");
+    	
     	WebElement disableBtn=driver.findElement(By.id("disabled-button"));
     	cu.click(disableBtn);
     	WebElement disabledTextBox=driver.findElement(By.id("enabled-example-input"));
@@ -84,11 +86,13 @@ Scenario scenario;
     	Actions act =new Actions(driver);
     	WebElement mousehoverBtn=driver.findElement(By.id("mousehover"));
     	act.moveToElement(mousehoverBtn).perform();
+      //act.contextClick(mousehoverBtn).perform();
     	
     	WebElement iframe=driver.findElement(By.id("courses-iframe"));
     	driver.switchTo().frame(iframe);
     	WebElement searchTB=driver.findElement(By.name("course"));
     	searchTB.sendKeys("Anshika won!");
+    	
 	}
 
 }
