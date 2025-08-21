@@ -7,6 +7,7 @@ import com.aventstack.extentreports.*;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
 
+import base.DriverFactory;
 import commonutils.CommonUtils;
 import io.cucumber.java.After;
 import io.cucumber.java.AfterAll;
@@ -46,7 +47,7 @@ public class StepDefinition {
 	public void setup(Scenario scenario)
 	{
 		//this piece of code will run before every scenario
-		driver=new ChromeDriver();
+		driver=DriverFactory.getDriver();;
 	    cu=new CommonUtils(driver);
 		lp=new LoginPage(driver,cu,scenario);
 		test=extent.createTest(scenario.getName());
@@ -62,7 +63,7 @@ public class StepDefinition {
 			test.fail("Step Failed Screenshot", MediaEntityBuilder.createScreenCaptureFromPath(path).build());
 		}
 		
-	//	driver.quit();
+		 DriverFactory.quitDriver();
 	}
 	
 	@BeforeStep
