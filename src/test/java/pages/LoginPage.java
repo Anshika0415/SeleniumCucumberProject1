@@ -20,6 +20,7 @@ public class LoginPage {
 WebDriver driver;
 CommonUtils cu;
 Scenario scenario;
+WebDriverWait wait;
 
 // constructor
 
@@ -28,6 +29,7 @@ Scenario scenario;
 		this.driver=driver;
 		this.cu=cu;
 		this.scenario=scenario;
+		this.wait=new WebDriverWait(driver, Duration.ofSeconds(10));
 		PageFactory.initElements(driver, this); // Initialize WebElements
 	}
 
@@ -75,8 +77,9 @@ Scenario scenario;
 		emailField.sendKeys(name);
 		passwordField.sendKeys(pass);
     	cu.click(loginBtn);
-    	WebDriverWait wait=new WebDriverWait(driver, Duration.ofSeconds(10));
+    	
     	wait.until(ExpectedConditions.invisibilityOf(loginBtn));
+    	
 	}
 
 	public void practicePageTasks() throws InterruptedException {
@@ -85,15 +88,15 @@ Scenario scenario;
     	cu.click(PracticeDD);
     	String parentWindow=driver.getWindowHandle();
     	cu.click(ElementPractice);
-    	Set<String> set=driver.getWindowHandles();
-    	for(String window:set)
+    	Set<String> windows=driver.getWindowHandles();
+    	for(String window:windows)
     	{
     		if(!window.equalsIgnoreCase(parentWindow))
     		{
     			driver.switchTo().window(window);
     		}
     	}
-    	
+    	wait.until(ExpectedConditions.elementToBeClickable(selectDD));
     	Select sel=new Select(selectDD);
     	sel.selectByValue("honda");
     	
