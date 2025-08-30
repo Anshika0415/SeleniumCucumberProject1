@@ -79,6 +79,7 @@ WebDriverWait wait;
     	cu.click(loginBtn);
     	
     	wait.until(ExpectedConditions.invisibilityOf(loginBtn));
+    	
 	}
 
 	public void practicePageTasks() throws InterruptedException {
